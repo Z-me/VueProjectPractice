@@ -35,35 +35,33 @@
 </template>
 
 <script>
-// 接続処理
-// var baseURL = 'https://practice-9a9dd.firebaseio.com'
-/* setTimeout(function () {
-  var firebase = new Firebase(baseURL)
-}, 100)
-*/
+// 商品追加
+import Firebase from 'firebase'
+// const firebase = new Firebase('https://practice-9a9dd.firebaseio.com')
 // var DB = firebase.child('shopping')
+// DB.on('child_added', function (datas) {
+//   var data = datas.val()
+//   data.id = datas.key()
+//   console.log(data)
+//   app.data.items.push(data)
+// })
 export default {
   name: 'ItemList',
   data () {
     return {
       msg: '商品リスト',
-      items: [
-        {
-          name: 'リンゴのパソコン',
-          value: 1288000,
-          imageURL: 'http://a-graph.jp/wp-content/uploads/2015/07/MACBOOKPRO.jpg',
-          number: 97,
-          buy: 0
-        },
-        {
-          name: 'リンゴのテレビ',
-          value: 17052,
-          imageURL: 'http://store.storeimages.cdn-apple.com/8561/as-images.apple.com/is/image/AppleInc/aos/published/images/a/pp/apple/tv/apple-tv-hero-select-201510?wid=538&hei=535&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=vWwkV0',
-          number: 55,
-          buy: 0
-        }
-      ]
+      items: []
     }
+  },
+  mounted () {
+    this.$nextTick(function () {
+      let firebase = new Firebase('https://practice-9a9dd.firebaseio.com')
+      firebase.child('shopping').on('child_added', (datas) => {
+        let data = datas.val()
+        data.id = datas.key()
+        this.items.unshift(data)
+      })
+    })
   }
 }
 </script>
