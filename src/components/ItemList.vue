@@ -35,16 +35,7 @@
 </template>
 
 <script>
-// 商品追加
 import Firebase from 'firebase'
-// const firebase = new Firebase('https://practice-9a9dd.firebaseio.com')
-// var DB = firebase.child('shopping')
-// DB.on('child_added', function (datas) {
-//   var data = datas.val()
-//   data.id = datas.key()
-//   console.log(data)
-//   app.data.items.push(data)
-// })
 export default {
   name: 'ItemList',
   data () {
@@ -54,6 +45,7 @@ export default {
     }
   },
   mounted () {
+    // 商品の追加
     this.$nextTick(function () {
       let firebase = new Firebase('https://practice-9a9dd.firebaseio.com')
       firebase.child('shopping').on('child_added', (datas) => {
