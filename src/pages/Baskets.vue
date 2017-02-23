@@ -1,46 +1,20 @@
 <template>
   <div class="ItemList">
-    <h1>{{msg}}</h1>
-    <table>
-      <thead>
-        <tr>
-          <th></th><th>商品名</th><th>価格</th><th>個数</th><th colspan="3">操作</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in items">
-          <td>
-            <img :src='item.imageURL' width="100px"/>
-          </td>
-          <td>
-            {{item.name}}
-          </td>
-          <td>
-            {{item.value}}
-          </td>
-          <td>
-            {{item.number}}
-          </td>
-          <td>
-            <input v-model='item.buy' type="number" min="0" v-bind:max='item.number'>
-          </td><td>
-            <button v-on:click="pushBasket(item)">買い物かごへ</button>
-          </td><td>
-            <button v-on:click="deleteItem(item)">削除</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <router-link to="/items">商品一覧</router-link>
+    <List type="basket"></List>
   </div>
 </template>
 
 <script>
 import Firebase from 'firebase'
+import List from 'components/List'
 export default {
   name: 'ItemList',
+  components: {
+    List
+  },
   data () {
     return {
-      msg: '商品リスト',
       items: []
     }
   },

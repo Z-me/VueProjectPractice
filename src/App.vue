@@ -1,21 +1,16 @@
 <template>
   <div id="app">
     <myheader></myheader>
-    <itemlist></itemlist>
-    
-    <img src="./assets/logo.png">
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import myheader from 'components/Header'
-import itemlist from 'components/ItemList'
 export default {
   name: 'app',
   components: {
-    myheader,
-    itemlist
+    myheader
   }
 }
 </script>

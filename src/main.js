@@ -3,10 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-// import Firebase from 'firebase'
-// const firebase = new Firebase('https://practice-9a9dd.firebaseio.com')
-// var DB = firebase.child('shopping')
-// console.table(DB)
+// import ItemList from './components/ItemList'
 
 /* eslint-disable no-new */
 new Vue({
