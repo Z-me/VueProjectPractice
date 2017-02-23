@@ -1,6 +1,7 @@
 <template>
   <div class="Items">
     <router-link to="/">買い物かご</router-link>
+    <h1>{{msg}}</h1>
     <List type='items'></List>
   </div>
 </template>
@@ -14,7 +15,7 @@ export default {
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: '商品リスト'
     }
   }
 }

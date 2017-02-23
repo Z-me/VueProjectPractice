@@ -1,6 +1,7 @@
 <template>
   <div class="ItemList">
     <router-link to="/items">商品一覧</router-link>
+    <h1>{{msg}}</h1>
     <List type="basket"></List>
   </div>
 </template>
@@ -15,6 +16,7 @@ export default {
   },
   data () {
     return {
+      msg: '買い物かご',
       items: []
     }
   },

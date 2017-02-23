@@ -1,10 +1,9 @@
 <template>
   <div class="List">
-    <h1>{{msg}}</h1>
     <table>
       <thead>
         <tr>
-          <th></th><th>商品名</th><th>価格</th><th>個数</th><th colspan="3">操作</th>
+          <th></th><th>商品名</th><th>価格</th><th>個数</th><th colspan="3" v-if="type==='items'">操作</th>
         </tr>
       </thead>
       <tbody>
@@ -21,16 +20,17 @@
           <td>
             {{item.number}}
           </td>
-          <td>
+          <td v-if="type==='items'">
             <input v-model='item.buy' type="number" min="0" v-bind:max='item.number'>
-          </td><td>
+          </td><td v-if="type==='items'">
             <button v-on:click="pushBasket(item)">買い物かごへ</button>
-          </td><td>
+          </td><td v-if="type==='items'">
             <button v-on:click="deleteItem(item)">削除</button>
           </td>
         </tr>
       </tbody>
     </table>
+    <pre>{{items}}</pre>
   </div>
 </template>
 
@@ -40,7 +40,6 @@ export default {
   name: 'ItemList',
   data () {
     return {
-      msg: '商品リスト',
       items: []
     }
   },
@@ -63,6 +62,11 @@ export default {
         })
       }
     })
+  },
+  methods: {
+    pushBasket: function (item) { // TODO: 買い物かごに追加する処理を実装
+      console.log(item)
+    }
   }
 }
 </script>
@@ -94,5 +98,8 @@ export default {
   }
   tr:nth-child(even) td {
     background-color: #C9ABFF;
+  }
+  pre {
+    text-align: left;
   }
 </style>
