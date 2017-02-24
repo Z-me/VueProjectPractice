@@ -2,7 +2,7 @@
 
 > A Vue.js projectaa
 
-## Build Setup
+## Build Setuptest
 
 ``` bash
 # install dependencies
