@@ -7,10 +7,12 @@
 
 <script>
 import myheader from 'components/Header'
+import itemlist from 'components/ItemList'
 export default {
   name: 'app',
   components: {
-    myheader
+    myheader,
+    itemlist
   }
 }
 </script>
