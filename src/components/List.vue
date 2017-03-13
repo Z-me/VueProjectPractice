@@ -1,9 +1,10 @@
 <template>
   <div class="List">
+    
     <table>
       <thead>
         <tr>
-          <th></th><th>商品名</th><th>価格</th><th>個数</th><th colspan="3" v-if="type==='items'">操作</th>
+          <th></th><th>商品名</th><th>価格</th><th colspan="4" v-if="type==='items'">操作</th>
         </tr>
       </thead>
       <tbody>
@@ -17,11 +18,42 @@
           <td>
             {{item.value}}
           </td>
-          <td>
-            {{item.number}}
-          </td>
           <td v-if="type==='items'">
-            <input v-model='item.buy' type="number" min="0" v-bind:max='item.number'>
+            <div class="input-group">
+              <span class="input-group-addon">購入個数</span>
+              <input type="number" class="form-control" v-model='item.buy' min="0" v-bind:max='item.number'>
+              <span class="input-group-addon">個</span>
+            </div>
+          </td><td v-if="type==='items'">
+           
+            <button id="show-modal" @click="item.showModal = true">Show Modal</button>
+            <Modal v-if="item.showModal" @close="item.showModal = false">
+              <h3 slot="header">{{item.name}}</h3>
+              <table slot="body">
+                <tr>
+                  <td rowspan="3">
+                    <img :src='item.imageURL' width="100%"/>
+                  </td>
+                  <th>価格</th>
+                  <td>
+                    <h3>{{item.value}}</h3>
+                  </td>
+                </tr>
+                <tr>
+                  <th>販売個数</th>
+                  <td>
+                    <h3>{{item.number}}</h3>
+                  </td>
+                </tr>
+                <tr>
+                  <th>詳細</th>
+                  <td>
+                    <p>{{item.detail}}</p>
+                  </td>
+                </tr>
+              </table>
+            </Modal>
+            
           </td><td v-if="type==='items'">
             <button v-on:click="pushBasket(item)">買い物かごへ</button>
           </td><td v-if="type==='items'">
@@ -36,6 +68,7 @@
 
 <script>
 import Firebase from 'firebase'
+import Modal from 'components/Modal'
 export default {
   name: 'ItemList',
   data () {
@@ -44,6 +77,9 @@ export default {
     }
   },
   props: ['type'],
+  components: {
+    Modal
+  },
   mounted () {
     // 商品の追加
     this.$nextTick(function () {
@@ -52,12 +88,14 @@ export default {
         firebase.child('shopping').on('child_added', (datas) => {
           let data = datas.val()
           data.id = datas.key()
+          data.showModal = false
           this.items.unshift(data)
         })
       } else {
         firebase.child('basket').on('child_added', (datas) => {
           let data = datas.val()
           data.id = datas.key()
+          data.showModal = false
           this.items.unshift(data)
         })
       }

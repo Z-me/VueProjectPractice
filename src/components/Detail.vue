@@ -27,6 +27,9 @@
           <span class="input-group-addon">画像URL</span>
           <input type="url" id="inputIMG" class="form-control" placeholder="http://www.hogehoge.com/img/huga.jpg" v-model="newItem.imageURL">      
         </div>
+        <div class="centor-block mb-2 mr-sm-2 mb-sm-0 col-md-11 col-ms-11">
+          <button type="button" class="btn btn-primary btn-lg">商品追加</button>
+        </div>
       </form>
       
       <div class="col-md-offset-3 col-md-6">
