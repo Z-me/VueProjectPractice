@@ -32,46 +32,33 @@
         </div>
       </form>
       
-      <div class="col-md-offset-3 col-md-6">
-        <table class="table table-sm table-striped">
-          <tr>
-            <td rowspan="4">
-              <img :src='newItem.imageURL' class="img-thumbnail">
-            </td>
-            <th><h3>
-              商品名
-            </h3></th>
-            <td>
-              {{newItem.name}}
-            </td>
-          </tr>
-          <tr>
-            <th><h3>
-              商品価格
-            </h3></th>
-            <td>
-              {{newItem.value}}
-            </td>
-          </tr>
-          <tr>
-            <th><h3>
-              在庫数
-            </h3></th>
-            <td>
-              {{newItem.number}}
-            </td>
-          </tr>
-            <th><h3>
-              画像URL
-            </h3></th>
-            <td>
-              {{newItem.imageURL}}
-            </td>
-        </table>
-      </div>
+      <h3 slot="header">{{item.name}}</h3>
+      <table slot="body">
+        <tr>
+          <td rowspan="3">
+            <img :src='item.imageURL' width="100%"/>
+          </td>
+          <th>価格</th>
+          <td>
+            <h3>{{item.value}}</h3>
+          </td>
+        </tr>
+        <tr>
+          <th>販売個数</th>
+          <td>
+            <h3>{{item.number}}</h3>
+          </td>
+        </tr>
+        <tr>
+          <th>詳細</th>
+          <td>
+            <p>{{item.detail}}</p>
+          </td>
+        </tr>
+      </table>
       
     </div>
-    <pre>{{newItems}}</pre>
+    
   </div>
 </template>
 
@@ -82,7 +69,7 @@ export default {
   name: 'ItemList',
   data () {
     return {
-      item: {},
+      item: [],
       newItem: {
         name: '',
         value: 0,
@@ -92,7 +79,10 @@ export default {
       msg: ''
     }
   },
-  props: ['type', 'id'],
+  props: [
+    'type',
+    'itemId'
+  ],
   mounted () {
     // 商品の追加
     this.$nextTick(function () {
@@ -104,10 +94,12 @@ export default {
           this.newItem = data
         })
       } else {
-        firebase.child('basket').on('child_added', (datas) => {
+        console.log(this.itemId)
+        firebase.child('shopping').child(this.itemId).on('value', (datas) => {
           let data = datas.val()
           data.id = datas.key()
-          this.item.unshift(data)
+          this.item = data
+          console.log(this.item)
         })
       }
     })

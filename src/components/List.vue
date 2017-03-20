@@ -26,32 +26,11 @@
             </div>
           </td><td v-if="type==='items'">
            
-            <button id="show-modal" @click="item.showModal = true">Show Modal</button>
+            <button id="show-modal" @click="item.showModal = true">詳細</button>
             <Modal v-if="item.showModal" @close="item.showModal = false">
-              <h3 slot="header">{{item.name}}</h3>
-              <table slot="body">
-                <tr>
-                  <td rowspan="3">
-                    <img :src='item.imageURL' width="100%"/>
-                  </td>
-                  <th>価格</th>
-                  <td>
-                    <h3>{{item.value}}</h3>
-                  </td>
-                </tr>
-                <tr>
-                  <th>販売個数</th>
-                  <td>
-                    <h3>{{item.number}}</h3>
-                  </td>
-                </tr>
-                <tr>
-                  <th>詳細</th>
-                  <td>
-                    <p>{{item.detail}}</p>
-                  </td>
-                </tr>
-              </table>
+              
+              <Detail type='detail' v-bind:item-id='item.id' slot="body"></Detail>
+              
             </Modal>
             
           </td><td v-if="type==='items'">
@@ -69,6 +48,7 @@
 <script>
 import Firebase from 'firebase'
 import Modal from 'components/Modal'
+import Detail from 'components/Detail'
 export default {
   name: 'ItemList',
   data () {
@@ -78,7 +58,8 @@ export default {
   },
   props: ['type'],
   components: {
-    Modal
+    Modal,
+    Detail
   },
   mounted () {
     // 商品の追加
