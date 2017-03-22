@@ -29,6 +29,7 @@
             <button id="show-modal" @click="item.showModal = true">詳細</button>
             <Modal v-if="item.showModal" @close="item.showModal = false">
               
+              <h3 slot="header">{{item.name}}</h3>
               <Detail type='detail' v-bind:item-id='item.id' slot="body"></Detail>
               
             </Modal>

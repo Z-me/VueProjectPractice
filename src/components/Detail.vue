@@ -5,54 +5,64 @@
         <label class="sr-only" for="inputName">商品名</label>
         <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-3 col-ms-3">
           <span class="input-group-addon">商品名</span>
-          <input type="text" id="inputName" class="form-control" placeholder="リンゴのパソコン" v-model="newItem.name">
+          <input type="text" id="inputName" class="form-control" placeholder="(例)リンゴのパソコン" v-model="newItem.name">
         </div>
         
         <label class="sr-only" for="value">価格</label>
         <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-3 col-ms-3 col-md-offset-1">
           <span class="input-group-addon">価格</span>
-          <input type="url" id="inputIMG" class="form-control" placeholder="24000" v-model="newItem.value">      
+          <input type="url" id="inputIMG" class="form-control" placeholder="(例)24000" v-model="newItem.value">      
           <span class="input-group-addon">円</span>
         </div>
         
         <label class="sr-only" for="value">在庫数</label>
         <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-3 col-ms-3 col-md-offset-1">
           <span class="input-group-addon">在庫数</span>
-          <input type="url" id="inputIMG" class="form-control" placeholder="54" v-model="newItem.numbre">
+          <input type="url" id="inputIMG" class="form-control" placeholder="(例)54" v-model="newItem.numbre">
           <span class="input-group-addon">個</span>
         </div>
         
         <label class="sr-only" for="inputIMG">商品画像</label>
         <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-11 col-ms-11">
           <span class="input-group-addon">画像URL</span>
-          <input type="url" id="inputIMG" class="form-control" placeholder="http://www.hogehoge.com/img/huga.jpg" v-model="newItem.imageURL">      
+          <input type="url" id="inputIMG" class="form-control" placeholder="(例)http://www.hogehoge.com/img/huga.jpg" v-model="newItem.imageURL">      
         </div>
         <div class="centor-block mb-2 mr-sm-2 mb-sm-0 col-md-11 col-ms-11">
           <button type="button" class="btn btn-primary btn-lg">商品追加</button>
         </div>
       </form>
       
-      <h3 slot="header">{{item.name}}</h3>
-      <table slot="body">
+      <table>
         <tr>
-          <td rowspan="3">
-            <img :src='item.imageURL' width="100%"/>
+          <td rowspan="4">
+            <img v-if="type==='input'" :src='newItem.imageURL' width="100%"/>
+            <img v-else :src='item.imageURL' width="100%"/>
           </td>
+          <th>商品名</th>
+          <td>
+            <h3 v-if="type==='input'">{{newItem.name}}</h3>
+            <h3 v-else>{{item.name}}</h3>
+          </td>
+        </tr>
+        <tr>
           <th>価格</th>
           <td>
-            <h3>{{item.value}}</h3>
+            <h3 v-if="type==='input'">{{newItem.value}}</h3>
+            <h3 v-else>{{item.value}}</h3>
           </td>
         </tr>
         <tr>
           <th>販売個数</th>
           <td>
-            <h3>{{item.number}}</h3>
+            <h3 v-if="type==='input'">{{newItem.number}}</h3>
+            <h3 v-else>{{item.number}}</h3>
           </td>
         </tr>
         <tr>
           <th>詳細</th>
           <td>
-            <p>{{item.detail}}</p>
+            <p v-if="type==='input'">{{newItem.detail}}</p>
+            <p v-else>{{item.detail}}</p>
           </td>
         </tr>
       </table>
