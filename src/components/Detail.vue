@@ -27,11 +27,14 @@
           <span class="input-group-addon">画像URL</span>
           <input type="url" id="inputIMG" class="form-control" placeholder="(例)http://www.hogehoge.com/img/huga.jpg" v-model="newItem.imageURL">      
         </div>
-        <div class="centor-block mb-2 mr-sm-2 mb-sm-0 col-md-11 col-ms-11">
+        <div class="centor-block mb-2 mr-sm-2 mb-sm-0 col-md-12 col-ms-12">
           <button type="button" class="btn btn-primary btn-lg">商品追加</button>
         </div>
       </form>
       
+      <div class="col-md-3" v-if="type==='input'">
+        <h2 v-if="type==='input'">プレビュー</h2>
+      </div>
       <table>
         <tr>
           <td rowspan="4">
