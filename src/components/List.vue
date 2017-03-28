@@ -1,10 +1,10 @@
 <template>
   <div class="List">
     
-    <table>
+    <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th></th><th>商品名</th><th>価格</th><th colspan="4" v-if="type==='items'">操作</th>
+          <th></th><th>商品名</th><th>価格</th><th v-if="type==='basket'">個数</th><th v-if="type==='items'">操作</th>
         </tr>
       </thead>
       <tbody>
@@ -18,6 +18,9 @@
           <td>
             {{item.value}}
           </td>
+          <td v-if="type==='basket'">
+            {{item.buy}}
+          </td>
           <td v-if="type==='items'">
             <div class="input-group">
               <span class="input-group-addon">購入個数</span>
@@ -25,19 +28,16 @@
               <span class="input-group-addon">個</span>
             </div>
           </td><td v-if="type==='items'">
-           
-            <button id="show-modal" @click="item.showModal = true">詳細</button>
-            <Modal v-if="item.showModal" @close="item.showModal = false">
-              
-              <h3 slot="header">{{item.name}}</h3>
-              <Detail type='detail' v-bind:item-id='item.id' slot="body"></Detail>
-              
-            </Modal>
+            <div class="btn-group" role="group" aria-label="...">
+              <button type="button" class="btn btn-info" id="show-modal" @click="item.showModal = true">詳細</button>  
+              <Modal v-if="item.showModal" @close="item.showModal = false">
+                <h3 slot="header">{{item.name}}</h3>
+                <Detail type='detail' v-bind:item-id='item.id' slot="body"></Detail>
+              </Modal>
+              <button type="button" class="btn btn-default" v-on:click="pushBasket(item)">買い物かごへ</button>
+              <button type="button" class="btn btn-danger" v-on:click="deleteItem(item)">削除</button>
+            </div>
             
-          </td><td v-if="type==='items'">
-            <button v-on:click="pushBasket(item)">買い物かごへ</button>
-          </td><td v-if="type==='items'">
-            <button v-on:click="deleteItem(item)">削除</button>
           </td>
         </tr>
       </tbody>
@@ -91,35 +91,8 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  table {
-    border-collapse: collapse;
-	text-align: left;
-	line-height: 1.5;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-  }
-  thead th {
-	width: 150px;
-	padding: 10px;
-	font-weight: bold;
-	vertical-align: top;
-	color: #fff;
-	background: darkslateblue;
-  }
-  td {
-	width: 350px;
-	padding: 10px;
-	vertical-align: top;
-  }
-  tr:nth-child(odd) td {
-    background-color: white;
-  }
-  tr:nth-child(even) td {
-    background-color: #C9ABFF;
-  }
-  pre {
-    text-align: left;
-  }
+pre {
+  text-align: left;
+}
 </style>

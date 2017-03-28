@@ -28,4 +28,7 @@ export default {
 body {
   margin: 0;
 }
+table{
+  text-align: left;
+}
 </style>
