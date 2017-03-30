@@ -1,7 +1,6 @@
 <template>
   <div class="Detail">
-    <div class="container">
-      <form v-if="type==='input'" class="form-horizontal">
+    <form v-if="type==='input'" class="form-horizontal">
         <div class="form-group">
           <label class="col-sm-2 control-label" for="inputName">商品名</label>
           <div class="col-sm-10">
@@ -42,7 +41,6 @@
           <button type="button" class="btn btn-primary btn-lg">商品追加</button>
         </div>
       </form>
-    </div>
     
     <hr v-if="type==='input'">
     <div class="preview">

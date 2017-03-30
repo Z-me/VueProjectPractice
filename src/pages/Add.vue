@@ -1,7 +1,6 @@
 <template>
   <div class="ItemList">
-    <router-link to="/items">商品一覧</router-link>
-    <h1>{{msg}}</h1>
+    <h1>商品追加</h1>
     <Detail type='input'></Detail>
   </div>
 </template>
@@ -12,11 +11,6 @@ export default {
   name: 'AddItem',
   components: {
     Detail
-  },
-  data () {
-    return {
-      msg: '商品追加'
-    }
   }
 }
 </script>
