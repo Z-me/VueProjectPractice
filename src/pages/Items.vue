@@ -1,7 +1,6 @@
 <template>
   <div class="Items">
-    <router-link to="/">買い物かご</router-link>
-    <h1>{{msg}}</h1>
+    <h1>商品一覧</h1>
     <List type='items'></List>
   </div>
 </template>
@@ -12,16 +11,10 @@ export default {
   name: 'list',
   components: {
     List
-  },
-  data () {
-    return {
-      msg: '商品リスト'
-    }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1, h2 {
   font-weight: normal;

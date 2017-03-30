@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <myheader class="navbar" id="header-navbar"></myheader>
-    <router-view></router-view>
+    <div class="container">
+      <router-view></router-view>
+    </div>
+    
   </div>
 </template>
 
@@ -27,5 +30,8 @@ export default {
 }
 body {
   margin: 0;
+}
+table{
+  text-align: left;
 }
 </style>

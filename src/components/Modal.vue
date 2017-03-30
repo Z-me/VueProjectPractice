@@ -29,13 +29,11 @@
   </transition>
 </template>
 
-
 <script>
 export default {
   name: 'modal',
   props: [
-    'show',
-    'id'
+    'show'
   ],
   methods: {
     hideModal: function () {
