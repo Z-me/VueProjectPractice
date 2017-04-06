@@ -23,7 +23,7 @@
             </Modal>
           </div>
           <div class="col-md-10 col-xs-12">
-            <div class="col-md-4 col-xs-12"><spna class="number">数量</spna></div>
+            <div class="col-md-4 col-xs-12"><span class="number">数量</span></div>
             <div class="col-md-8 col-xs-12 input-buy">
               <div class="input-group col-md-10 col-xs-10">
                 <span class="input-group-btn">

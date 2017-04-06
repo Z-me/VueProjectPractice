@@ -3,7 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Vue2Filters from 'vue2-filters'
 
+Vue.use(Vue2Filters)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
