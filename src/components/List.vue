@@ -9,7 +9,7 @@
         <hr>
         <div id="item-view" class="row">
           <div class="col-md-4 col-xs-12">
-            ¥{{item.value}}
+            {{item.value | currency('¥') }}
           </div>
           <div class="col-md-8 col-xs-12">
             （{{item.number}}点 出品）
@@ -46,7 +46,7 @@
         </div>
       </div>
     </div>
-    
+    <h2>{{test | currency}}</h2>
     <table class="table table-striped table-hover">
       <thead>
         <tr>
@@ -100,7 +100,8 @@ export default {
   name: 'ItemList',
   data () {
     return {
-      items: []
+      items: [],
+      test: 141421356
     }
   },
   props: ['type'],
